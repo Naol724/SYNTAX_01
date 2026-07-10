@@ -158,28 +158,94 @@ This website template is designed for:
 
 ## 🌐 Deploy on Render
 
-This project includes a `render.yaml` Blueprint for one-click setup.
+### Important: use the correct folder for Git
+
+The Git repo is here (not the parent folder):
+
+```text
+C:\Users\Naol\Desktop\Unit project\SYNTAX NEW\SYNTAX_01\SYNTAX_01
+```
+
+```powershell
+cd "C:\Users\Naol\Desktop\Unit project\SYNTAX NEW\SYNTAX_01\SYNTAX_01"
+git remote -v
+# should show: https://github.com/Naol724/SYNTAX_01.git
+```
 
 ### Option A — Blueprint (recommended)
 
-1. Push this repository to GitHub
-2. In [Render Dashboard](https://dashboard.render.com) → **New** → **Blueprint**
-3. Connect the repo (root contains `package.json` and `render.yaml`)
-4. Apply the Blueprint — Render will create the web service automatically
+`render.yaml` already fills almost everything. Push latest code, then create the Blueprint.
+
+#### 1) Push to GitHub first
+
+```powershell
+cd "C:\Users\Naol\Desktop\Unit project\SYNTAX NEW\SYNTAX_01\SYNTAX_01"
+git add .
+git status
+git commit -m "Configure Render Blueprint for fast always-on deploy"
+git push origin main
+```
+
+#### 2) Open Render Blueprint
+
+1. Go to [https://dashboard.render.com](https://dashboard.render.com) and sign in
+2. Click **New** → **Blueprint**
+3. Connect GitHub if asked, then select repo: **`Naol724/SYNTAX_01`**
+
+#### 3) Exact values to enter / confirm on Render
+
+| Field on Render | What to enter / select |
+|---|---|
+| **Blueprint Name** | `syntax-software-solutions` (or any name you like) |
+| **Branch** | `main` |
+| **Blueprint Path** | `render.yaml` (repo root — leave default) |
+| **Root Directory** | leave **empty** (repo root already has `package.json`) |
+| **Auto-Deploy** | **On Commit** (already set in YAML) |
+
+Render will read `render.yaml` and show one web service. Confirm these values (already set for you):
+
+| Service setting | Value |
+|---|---|
+| **Name** | `syntax-software-solutions` |
+| **Language / Runtime** | `Node` |
+| **Instance type (Plan)** | **Starter** (always-on = opens fast; Free sleeps after ~15 min) |
+| **Region** | `Frankfurt` (closer to Ethiopia than Oregon) |
+| **Branch** | `main` |
+| **Build Command** | `npm ci && npm run build` |
+| **Start Command** | `npm start` |
+| **Health Check Path** | `/` |
+
+#### 4) Environment variables (already in Blueprint — do not retype unless missing)
+
+| Key | Value | Notes |
+|---|---|---|
+| `NODE_ENV` | `production` | set by Blueprint |
+| `NODE_VERSION` | `20.20.0` | set by Blueprint |
+| `HOSTNAME` | `0.0.0.0` | set by Blueprint |
+| `NEXT_TELEMETRY_DISABLED` | `1` | set by Blueprint |
+| `PORT` | *(auto)* | Render sets this — **do not add manually** |
+
+**No API keys or secrets are required** for this project right now.
+
+#### 5) Apply & wait
+
+1. Click **Apply** / **Create Blueprint resources**
+2. Wait for the first deploy (usually 3–8 minutes)
+3. Open the URL Render shows, like: `https://syntax-software-solutions.onrender.com`
+
+#### Why it opens fast
+
+- **Starter** plan does **not** spin down after idle (Free does, and first open can take 30–60+ seconds)
+- **Standalone** Next.js build starts lighter on Render
+- Pages are mostly **static**, so they load quickly once the service is up
+
+To save money later, change `plan: starter` → `plan: free` in `render.yaml` (accepts cold starts).
 
 ### Option B — Manual Web Service
 
-1. **New** → **Web Service** → connect the GitHub repo
-2. Settings:
-   - **Runtime:** Node
-   - **Build Command:** `npm install && npm run build`
-   - **Start Command:** `npm start`
-   - **Node Version:** `20` (or set `NODE_VERSION=20.20.0`)
+1. **New** → **Web Service** → repo `Naol724/SYNTAX_01`
+2. Use the same table values above
 3. Deploy
-
-Render injects `PORT` automatically. The start script binds to `0.0.0.0` so the service is reachable.
-
-No required environment secrets for the current in-memory contact form storage. Optional vars are listed in `.env.example`.
 
 ---
 
