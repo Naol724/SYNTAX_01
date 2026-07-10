@@ -4,5 +4,10 @@ dist
 .DS_Store
 server/public
 *.tar.gz
+.env
 .env.local
 .env*.local
+.vercel
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

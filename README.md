@@ -112,7 +112,7 @@ This website template is designed for:
 - **GitHub** - Repository hosting and collaboration
 
 ### Deployment
-- **Vercel** - Optimized Next.js deployment platform
+- **Render** - Production Node.js web service hosting
 - **Environment Variables** - Secure configuration management
 
 
@@ -152,7 +152,34 @@ This website template is designed for:
    ```
 
 5. **Open in browser**
-   - Navigate to `http://localhost:3000`
+   - Navigate to `http://localhost:5000`
+
+---
+
+## 🌐 Deploy on Render
+
+This project includes a `render.yaml` Blueprint for one-click setup.
+
+### Option A — Blueprint (recommended)
+
+1. Push this repository to GitHub
+2. In [Render Dashboard](https://dashboard.render.com) → **New** → **Blueprint**
+3. Connect the repo (root contains `package.json` and `render.yaml`)
+4. Apply the Blueprint — Render will create the web service automatically
+
+### Option B — Manual Web Service
+
+1. **New** → **Web Service** → connect the GitHub repo
+2. Settings:
+   - **Runtime:** Node
+   - **Build Command:** `npm install && npm run build`
+   - **Start Command:** `npm start`
+   - **Node Version:** `20` (or set `NODE_VERSION=20.20.0`)
+3. Deploy
+
+Render injects `PORT` automatically. The start script binds to `0.0.0.0` so the service is reachable.
+
+No required environment secrets for the current in-memory contact form storage. Optional vars are listed in `.env.example`.
 
 ---
 
@@ -162,7 +189,7 @@ This website template is designed for:
 ✅ Complete responsive design implementation  
 ✅ Source code repository (GitHub)  
 ✅ Comprehensive project documentation  
-✅ Live deployment link (Vercel)  
+✅ Live deployment link (Render)  
 ✅ README documentation  
 
 ---
@@ -237,12 +264,12 @@ The website will provide a strong, scalable foundation for small businesses and 
 
 ## 🚀 Deployment
 
-The project is configured for seamless deployment to Vercel:
+The project is configured for Render via `render.yaml`:
 
-1. Connect GitHub repository to Vercel
-2. Configure environment variables in Vercel dashboard
-3. Deploy with automatic CI/CD pipeline
-4. Custom domain configuration available
+1. Connect the GitHub repository to Render (Blueprint or Web Service)
+2. Build with `npm install && npm run build`
+3. Start with `npm start` (uses Render’s `PORT`)
+4. Optional custom domain in the Render dashboard
 
 **Live Demo:** [Deployment Link will be added after launch]
 
