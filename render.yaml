@@ -1,12 +1,13 @@
-# Render Blueprint — Syntax Software Solutions
+# Render Blueprint — syntax-01
+# Target URL: https://syntax-01.onrender.com
 # Docs: https://render.com/docs/blueprint-spec
 #
-# Starter plan stays always-on (no 15‑min sleep), so the site opens quickly.
-# Switch to `plan: free` only if you accept cold starts after idle.
+# Starter plan stays always-on (no 15‑min sleep).
+# Use plan: free only if you accept cold starts after idle.
 
 services:
   - type: web
-    name: syntax-software-solutions
+    name: syntax-01
     runtime: node
     plan: starter
     region: frankfurt

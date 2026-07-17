@@ -196,7 +196,7 @@ git push origin main
 
 | Field on Render | What to enter / select |
 |---|---|
-| **Blueprint Name** | `syntax-software-solutions` (or any name you like) |
+| **Blueprint Name** | `syntax-01` |
 | **Branch** | `main` |
 | **Blueprint Path** | `render.yaml` (repo root — leave default) |
 | **Root Directory** | leave **empty** (repo root already has `package.json`) |
@@ -206,7 +206,7 @@ Render will read `render.yaml` and show one web service. Confirm these values (a
 
 | Service setting | Value |
 |---|---|
-| **Name** | `syntax-software-solutions` |
+| **Name** | `syntax-01` → live URL: **https://syntax-01.onrender.com** |
 | **Language / Runtime** | `Node` |
 | **Instance type (Plan)** | **Starter** (always-on = opens fast; Free sleeps after ~15 min) |
 | **Region** | `Frankfurt` (closer to Ethiopia than Oregon) |
@@ -231,7 +231,7 @@ Render will read `render.yaml` and show one web service. Confirm these values (a
 
 1. Click **Apply** / **Create Blueprint resources**
 2. Wait for the first deploy (usually 3–8 minutes)
-3. Open the URL Render shows, like: `https://syntax-software-solutions.onrender.com`
+3. Open: **https://syntax-01.onrender.com**
 
 #### Why it opens fast
 
